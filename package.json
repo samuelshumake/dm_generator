@@ -1,0 +1,23 @@
+{
+  "name": "dm_generator",
+  "version": "1.0.0",
+  "description": "Desktop application for generating random numbers and rolling on Dungeon Master tables.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samuelshumake/dm_generator.git"
+  },
+  "keywords": [],
+  "author": "Samuel Shumake",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samuelshumake/dm_generator/issues"
+  },
+  "homepage": "https://github.com/samuelshumake/dm_generator#readme",
+  "devDependencies": {
+    "electron": "^12.0.2"
+  }
+}
