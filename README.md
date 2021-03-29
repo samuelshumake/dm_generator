@@ -2,3 +2,4 @@
 Desktop application for generating random numbers and rolling on Dungeon Master tables.
 
 **To Start:** npm start
+**To Package:** npm run make
