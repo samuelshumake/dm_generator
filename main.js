@@ -1,6 +1,7 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
+// Create new window
 function createWindow () {
     const win = new BrowserWindow({
         width: 800,
@@ -13,6 +14,7 @@ function createWindow () {
     win.loadFile('index.html');
 }
 
+// When app starts
 app.whenReady().then(() => {
     createWindow();
 
@@ -21,10 +23,30 @@ app.whenReady().then(() => {
             createWindow();
         }
     });
+
+    // Build menu from template
+    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+    Menu.setApplicationMenu(mainMenu);
 })
 
+// When app closes
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
 })
+
+// Main Menu Template
+const mainMenuTemplate = [
+    {
+        label: "File",
+        submenu: [
+            {
+                label: "Quit",
+                click() {
+                    app.quit();
+                }
+            }
+        ]
+    }
+];
