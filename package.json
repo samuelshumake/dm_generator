@@ -25,7 +25,13 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "electron": "^12.0.2"
+    "del": "^6.0.0",
+    "electron": "^12.0.2",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-watch": "^5.0.1"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0"
