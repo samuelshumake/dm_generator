@@ -10,6 +10,7 @@ function createWindow () {
             preload: path.join(__dirname, 'preload.js')
         }
     });
+    win.maximize();
 
     win.loadFile('index.html');
 }
@@ -43,6 +44,7 @@ const mainMenuTemplate = [
         submenu: [
             {
                 label: "Quit",
+                accelerator: process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
                 click() {
                     app.quit();
                 }
