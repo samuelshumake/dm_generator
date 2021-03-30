@@ -7,12 +7,12 @@ gulp.task('styles', () => {
     return gulp.src('src/scss/style.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('dist/style.min.css'));
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('clean', () => {
     return del([
-        'dist/style.min.css',
+        'dist/style.css',
     ]);
 });
 

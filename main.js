@@ -26,8 +26,8 @@ app.whenReady().then(() => {
     });
 
     // Build menu from template
-    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
-    Menu.setApplicationMenu(mainMenu);
+    // const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+    // Menu.setApplicationMenu(mainMenu);
 })
 
 // When app closes
@@ -38,17 +38,17 @@ app.on('window-all-closed', () => {
 })
 
 // Main Menu Template
-const mainMenuTemplate = [
-    {
-        label: "File",
-        submenu: [
-            {
-                label: "Quit",
-                accelerator: process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
-                click() {
-                    app.quit();
-                }
-            }
-        ]
-    }
-];
+// const mainMenuTemplate = [
+//     {
+//         label: "File",
+//         submenu: [
+//             {
+//                 label: "Quit",
+//                 accelerator: process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
+//                 click() {
+//                     app.quit();
+//                 }
+//             }
+//         ]
+//     }
+// ];
