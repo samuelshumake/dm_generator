@@ -6,22 +6,31 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 25%;
+        width: 20%;
         background-color: $highlight;
-        padding: 50px 0;
+        padding: 50px;
+        .sidebar__title {
+            width: 100%;
+        }
         .sidebar__actions {
-            display: flex;
-            flex-direction: column;
-            .sidebar__action {
-                text-decoration: none;
-                padding: 5px;
-                &:not(:last-of-type) {
-                    margin: 0 0 10px 0;
+            width: 100%;
+            .sidebar__action-group {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 25px;
+                .sidebar__label {
+                    margin: 0 0 5px 0;
+                }
+                .sidebar__action {
+                    text-decoration: none;
+                    padding: 5px;
+                    margin: 0 0 0 15px;
                 }
             }
         }
     }
     .dashboard {
-        width: 75%;
+        width: 80%;
+        padding: 50px;
     }
 }
