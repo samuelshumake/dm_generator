@@ -13,16 +13,16 @@
                 <div class="sidebar__action-group">
                     <h2 class="sidebar__label">Individual Treasure</h2>
                     <a id="ind--1" class="link--white sidebar__action" href="#">CR 0-4</a>
-                    <a id="ind--2" class="link--white sidebar__action" href="#">CR 5-10</a>
+                    <!-- <a id="ind--2" class="link--white sidebar__action" href="#">CR 5-10</a>
                     <a id="ind--3" class="link--white sidebar__action" href="#">CR 11-16</a>
-                    <a id="ind--4" class="link--white sidebar__action" href="#">CR 17+</a>
+                    <a id="ind--4" class="link--white sidebar__action" href="#">CR 17+</a> -->
                 </div>
                 <div class="sidebar__action-group">
                     <h2 class="sidebar__label">Treasure Hoard</h2>
                     <a id="hoard--1" class="link--white sidebar__action" href="#">CR 0-4</a>
-                    <a id="hoard--2" class="link--white sidebar__action" href="#">CR 5-10</a>
+                    <!-- <a id="hoard--2" class="link--white sidebar__action" href="#">CR 5-10</a>
                     <a id="hoard--3" class="link--white sidebar__action" href="#">CR 11-16</a>
-                    <a id="hoard--4" class="link--white sidebar__action" href="#">CR 17+</a>
+                    <a id="hoard--4" class="link--white sidebar__action" href="#">CR 17+</a> -->
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
         }
 
         // Generates random number between 1 and 100
-        var randNum = Math.floor(Math.random() * 100) + 1; 
+        var randNum = Math.floor(Math.random() * 100) + 1;
 
         // For each key, see if 1d100 lies within it
         var tableKey;
@@ -66,22 +66,26 @@
                 break;
             }
         }
-        console.log(table.loot[tableKey]);
+
+        getLoot(table.loot[tableKey]);
     }
 
     // Check to see which bracket the randomly generated number falls within
     function inRange(num, range) {
         if (range.includes("+")) {
             return num >= range.split("+")[0];
-        } else {
+        } else if (range.includes("-")) {
             var min = range.split("-")[0];
             var max = range.split("-")[1];
             return num >= min && num <= max;
+        } else {
+            return num == range;
         }
     }
 
-    // Calculate dice action
-    function diceRoll(action) {
-
+    // Get the table loot
+    function getLoot(loot) {
+        // TODO: Potentially rewrite table to standardize all keys instead of having "25gp": "1d6"
+        // TODO: Write function that calculates dice rolls and returns the total
     }
 </script>
