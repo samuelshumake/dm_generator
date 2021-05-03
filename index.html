@@ -29,6 +29,28 @@
         <div class="dashboard">
             <h1>DM Generator</h1>
             <p>Desktop application for generating random numbers and rolling on Dungeon Master tables.</p>
+            <div class="response-grid">
+                <div class="response-grid__top">
+                    <div id="response-grid__coin">
+                        <h2>Coin</h2>
+                        <div id="response-grid__coin__interior"></div>
+                    </div>
+                    <div id="response-grid__gem">
+                        <h2>Gem</h2>
+                        <div id="response-grid__gem__interior"></div>
+                    </div>
+                    <div id="response-grid__art">
+                        <h2>Art</h2>
+                        <div id="response-grid__art__interior"></div>
+                    </div>
+                </div>
+                <div class="response-grid__bottom">
+                    <div id="response-grid__magic">
+                        <h2>Magic Items</h2>
+                        <div id="response-grid__magic__interior"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
@@ -45,6 +67,9 @@
 
     // Roll on table
     function rollTable(tableID) {
+        if (document.querySelector != "") {
+            document.querySelector("#response").innerHTML = "";
+        }   
         // Open and read relevant json file within tables/ directory
         var rawdata = fs.readFileSync("tables/" + tableID + ".json");
         var table = JSON.parse(rawdata);
@@ -66,8 +91,19 @@
                 break;
             }
         }
+        var loot = getLoot(table.loot[tableKey]);
+        // console.log(loot);
 
-        getLoot(table.loot[tableKey]);
+        for (var i = 0; i < loot.length; i++) {
+            if (Array.isArray(loot[i])) {
+                console.log(loot[i]);
+                for (var j = 0; j < loot[i].length; j++) {
+                    document.querySelector("#response").innerHTML += "<p>" + loot[i][j] + "</p>";
+                }
+            } else {
+                document.querySelector("#response").innerHTML += "<p>" + loot[i] + "</p>";
+            }
+        }
     }
 
     // Check to see which bracket the randomly generated number falls within
@@ -84,18 +120,23 @@
     }
 
     // Get the table loot
+    // TODO: Fix function, sometimes returns empty array
     function getLoot(loot) {
-        // TODO: Write function that calculates dice rolls and returns the total
         var list = [];
         for (var i in loot) {
             if (loot[i]['dice']) {
-                amount = diceRoll(loot[i], i);
+                var amount = diceRoll(loot[i], i);
                 list.push(amount)
             } else {
                 console.log("nope");
             }
         }
-
+        
+        if (list.length == 0) {
+            return ["There is no loot!"];
+        } else {
+            return list;
+        }
     }
 
     // Calculate dice rolls in the form of 1d6, 2d4, etc
@@ -106,22 +147,47 @@
         
         rollNum = roll['dice'].split("d")[0];
         rollDice = roll['dice'].split("d")[1];
+        // console.log("dice-roll");
 
         for (var i = 0; i < rollNum; i++) {
             add = Math.floor(Math.random() * parseInt(rollDice)) + 1;
             total += add;
+            // console.log("here");
         }
         if (roll["table"]) {    
-            rollMagic(total, roll["table"]);
+            // console.log("table");
+            var magic = rollMagic(total, roll["table"]);
+            return magic;
         } else {
+            // console.log("coin");
             total *= parseInt(roll["amount"]);
-            total += roll["type"] + " in " + object;    
+            total += roll["type"] + " in " + object;  
+            return total;  
         }
-        return total;
     }
 
-    function rollMagic(roll, table) {
-        console.log(roll);
-        console.log(table);
+    // TODO: Fix this function, sometimes returns empty array.
+    function rollMagic(roll, tableID) {
+        var rawdata = fs.readFileSync("tables/magic--" + tableID + ".json");
+        var table = JSON.parse(rawdata);
+        var items = [];
+
+        // Make an array of all of the loot keys
+        var keys = [];
+        for (var i in table) {
+            keys.push(i);
+        }
+
+        // Loop through table rolled number of times and grab loot
+        for (var i = 0; i < roll; i++) {
+            var randNum = Math.floor(Math.random() * 100) + 1;
+            for (var j in keys) {
+                if (inRange(randNum, keys[j])) {
+                    items.push(table[keys[j]]);
+                    break;
+                }
+            }
+        }
+        return items;
     }
 </script>
