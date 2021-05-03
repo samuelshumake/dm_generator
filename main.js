@@ -7,7 +7,10 @@ function createWindow () {
         width: 800,
         height: 600,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, 'preload.js'),
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true
         }
     });
     win.maximize();
@@ -24,10 +27,6 @@ app.whenReady().then(() => {
             createWindow();
         }
     });
-
-    // Build menu from template
-    // const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
-    // Menu.setApplicationMenu(mainMenu);
 })
 
 // When app closes
@@ -35,20 +34,5 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
-})
+});
 
-// Main Menu Template
-// const mainMenuTemplate = [
-//     {
-//         label: "File",
-//         submenu: [
-//             {
-//                 label: "Quit",
-//                 accelerator: process.platform == "darwin" ? "Command+Q" : "Ctrl+Q",
-//                 click() {
-//                     app.quit();
-//                 }
-//             }
-//         ]
-//     }
-// ];

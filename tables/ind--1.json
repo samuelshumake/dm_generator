@@ -1,0 +1,12 @@
+{
+    "name": "Individual Treausre : CR 0-4",
+    "loot": {
+        "01-30": {
+            "action": "5d6 CP"
+        },
+        "31-60": "4d6 SP",
+        "61-70": "3d6 EP",
+        "71-95": "3d6 GP",
+        "96-100": "1d6 PP"
+    }
+}
