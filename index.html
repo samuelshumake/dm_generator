@@ -27,27 +27,25 @@
             </div>
         </div>
         <div class="dashboard">
-            <h1>DM Generator</h1>
-            <p>Desktop application for generating random numbers and rolling on Dungeon Master tables.</p>
             <div class="response-grid">
                 <div class="response-grid__top">
                     <div class="response-grid__wrapper">
                         <h2>Coin</h2>
-                        <div id="response-grid__coin"></div>
+                        <div class="response-grid__response" id="response-grid__coin"></div>
                     </div>
                     <div class="response-grid__wrapper">
-                        <h2>Gem</h2>
-                        <div id="response-grid__gem"></div>
+                        <h2>Gems</h2>
+                        <div class="response-grid__response" id="response-grid__gems"></div>
                     </div>
                     <div class="response-grid__wrapper">
                         <h2>Art</h2>
-                        <div id="response-grid__art"></div>
+                        <div class="response-grid__response" id="response-grid__art"></div>
                     </div>
                 </div>
                 <div class="response-grid__bottom">
                     <div class="response-grid__wrapper">
                         <h2>Magic Items</h2>
-                        <div id="response-grid__magic"></div>
+                        <div class="response-grid__response" id="response-grid__magic"></div>
                     </div>
                 </div>
             </div>
@@ -67,9 +65,10 @@
 
     // Roll on table
     function rollTable(tableID) {
-        if (document.querySelector != "") {
-            document.querySelector("#response").innerHTML = "";
-        }   
+        var responses = document.querySelectorAll(".response-grid__response");
+        for (var i = 0; i < responses.length; i++) {
+            responses[i].innerHTML = "";
+        }
         // Open and read relevant json file within tables/ directory
         var rawdata = fs.readFileSync("tables/" + tableID + ".json");
         var table = JSON.parse(rawdata);
@@ -92,18 +91,21 @@
             }
         }
         var loot = getLoot(table.loot[tableKey]);
-        // console.log(loot);
 
-        for (var i = 0; i < loot.length; i++) {
-            if (Array.isArray(loot[i])) {
-                console.log(loot[i]);
-                for (var j = 0; j < loot[i].length; j++) {
-                    document.querySelector("#response").innerHTML += "<p>" + loot[i][j] + "</p>";
+        if (loot) {
+            for (var i = 0; i < loot.length; i++) {
+                if (Array.isArray(loot[i])) {
+                    for (var j = 0; j < loot[i].length; j++) {
+                        document.querySelector("#response-grid__magic").innerHTML += "<p>" + loot[i][j] + "</p>";
+                    }
+                } else {
+                    document.querySelector("#response-grid__" + Object.keys(loot[i])[0]).innerHTML += "<p>" + Object.values(loot[i])[0] + "</p>";
                 }
-            } else {
-                document.querySelector("#response").innerHTML += "<p>" + loot[i] + "</p>";
             }
+        } else {
+            document.querySelector("#response-grid__magic").innerHTML = "<p>There is no loot!</p>";
         }
+        
     }
 
     // Check to see which bracket the randomly generated number falls within
@@ -120,7 +122,6 @@
     }
 
     // Get the table loot
-    // TODO: Fix function, sometimes returns empty array
     function getLoot(loot) {
         var list = [];
         for (var i in loot) {
@@ -131,9 +132,9 @@
                 alert("nope, check code on line 131");
             }
         }
-        
+
         if (list.length == 0) {
-            return ["There is no loot!"];
+            return false;
         } else {
             return list;
         }
@@ -142,32 +143,29 @@
     // Calculate dice rolls in the form of 1d6, 2d4, etc
     function diceRoll(roll, object) {
         var total = 0;
+        var totalArray = {}
         var rollNum;
         var rollDice;
         
         rollNum = roll['dice'].split("d")[0];
         rollDice = roll['dice'].split("d")[1];
-        // console.log("dice-roll");
 
         for (var i = 0; i < rollNum; i++) {
             add = Math.floor(Math.random() * parseInt(rollDice)) + 1;
             total += add;
-            // console.log("here");
         }
         if (roll["table"]) {    
-            // console.log("table");
             var magic = rollMagic(total, roll["table"]);
             return magic;
         } else {
-            // console.log("coin");
             total *= parseInt(roll["amount"]);
-            total += roll["type"] + " in " + object; 
-            
-            return total;  
+            total += roll["type"];
+            totalArray[object] = total;
+            return totalArray;  
         }
     }
 
-    // TODO: Fix this function, sometimes returns empty array.
+    // Roll on the magic items table
     function rollMagic(roll, tableID) {
         var rawdata = fs.readFileSync("tables/magic--" + tableID + ".json");
         var table = JSON.parse(rawdata);
