@@ -2,27 +2,37 @@
     "loot": {
         "01-30": {
             "coin": {
-                "CP": "5d6"
+                "dice": "5d6",
+                "amount": "1",
+                "type": "cp"
             }
         },
         "31-60": {
             "coin": {
-                "SP": "4d6"
+                "dice": "4d6",
+                "amount": "1",
+                "type": "sp"
             }
         },
         "61-70": {
             "coin": {
-                "EP": "3d6"
+                "dice": "3d6",
+                "amount": "1",
+                "type": "ep"
             }
         },
         "71-95": {
             "coin": {
-                "GP": "3d6"
+                "dice": "3d6",
+                "amount": "1",
+                "type": "gp"
             }
         },
         "96-100": {
             "coin": {
-                "PP": "1d6"
+                "dice": "1d6",
+                "amount": "1",
+                "type": "pp"
             }
         }
     }

@@ -1,128 +1,173 @@
 {
     "coin": {
-        "CP": "6d6 * 100",
-        "SP": "3d6 * 100",
-        "GP": "2d6 * 10"
+        "dice1": "6d6 100-cp",
+        "dice2": "3d6 100-sp",
+        "dice3": "2d6 10-gp"
     },
     "loot": {
         "01-06": {},
         "07-16": {
             "gems": {
-                "10gp": "2d6"
+                "dice": "2d6",
+                "amount": "10",
+                "type": "gp"
             }
         },
         "17-26": {
             "art": {
-                "25gp": "2d4"
+                "dice": "2d4",
+                "amount": "25",
+                "type": "gp"
             }
         },
         "27-36": {
             "gems": {
-                "50gp": "2d6"
+                "dice": "2d6",
+                "amount": "50",
+                "type": "gp"
             }
         },
         "37-44": {
             "gems": {
-                "10gp": "2d6"
+                "dice": "2d6",
+                "amount": "10",
+                "type": "gp"
             },
             "magic": {
-                "A": "1d6"
+                "dice": "1d6",
+                "table": "A"
             }
         },
         "45-52": {
             "art": {
-                "25gp": "2d4"
+                "dice": "2d4",
+                "amount": "25",
+                "type": "gp"
             },
             "magic": {
-                "A": "1d6"
+                "dice": "1d6",
+                "table": "A"
             }
         },
         "53-60": {
             "gems": {
-                "50gp": "2d6"
+                "dice": "2d6",
+                "amount": "50",
+                "type": "gp"
             },
             "magic": {
-                "A": "1d6"
+                "dice": "1d6",
+                "table": "A"
             }
         },
         "61-65": {
             "gems": {
-                "10gp": "2d6"
+                "dice": "2d6",
+                "amount": "10",
+                "type": "gp"
             },
             "magic": {
-                "B": "1d4"
+                "dice": "1d4",
+                "table": "B"
             }
         },
         "66-70": {
             "art": {
-                "25gp": "2d4"
+                "dice": "2d4",
+                "amount": "25",
+                "type": "gp"
             },
             "magic": {
-                "B": "1d4"
+                "dice": "1d4",
+                "table": "B"
             }
         },
         "71-75": {
             "gems": {
-                "50gp": "2d6"
+                "dice": "2d6",
+                "amount": "50",
+                "type": "gp"
             },
             "magic": {
-                "B": "1d4"
+                "dice": "1d4",
+                "table": "B"
             }
         },
         "76-78": {
             "gems": {
-                "10gp": "2d6"
+                "dice": "2d6",
+                "amount": "10",
+                "type": "gp"
             },
             "magic": {
-                "C": "1d4"
+                "dice": "1d4",
+                "table": "C"
             }
         },
         "79-80": {
             "art": {
-                "25gp": "2d4"
+                "dice": "2d4",
+                "amount": "25",
+                "type": "gp"
             },
             "magic": {
-                "C": "1d4"
+                "dice" : "1d4",
+                "table": "C"
             }
         },
         "81-85": {
             "gems": {
-                "50gp": "2d6"
+                "dice": "2d6",
+                "amount": "50",
+                "type": "gp"
             },
             "magic": {
-                "C": "1d4"
+                "dice": "1d4",
+                "table": "C"
             }
         },
         "86-92": {
             "art": {
-                "25gp": "2df"
+                "dice": "2d4",
+                "amount": "25",
+                "type": "gp"
             },
             "magic": {
-                "F": "1d4"
+                "dice": "1d4",
+                "table": "F"
             }
         },
         "93-97": {
             "gems": {
-                "50gp": "2d6"
+                "dice": "2d6",
+                "amount": "50",
+                "type": "gp"
             },
             "magic": {
-                "F": "1d4"
+                "dice": "1d4",
+                "table": "F"
             }
         },
         "98-99": {
             "art": {
-                "25gp": "2d4"
+                "dice": "2d4",
+                "amount": "25",
+                "type": "gp"
             },
             "magic": {
-                "G": "1"
+                "dice": "1",
+                "table": "1"
             }
         },
         "100": {
             "gems": {
-                "50gp": "2d6"
+                "dice": "2d6",
+                "amount": "50",
+                "type": "gp"
             },
             "magic": {
-                "G": "1"
+                "dice": "1",
+                "table": "G"
             }
         }
     }
