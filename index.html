@@ -85,41 +85,42 @@
 
     // Get the table loot
     function getLoot(loot) {
-        // TODO: Potentially rewrite table to standardize all keys instead of having "25gp": "1d6"
         // TODO: Write function that calculates dice rolls and returns the total
         var list = [];
         for (var i in loot) {
             if (loot[i]['dice']) {
                 amount = diceRoll(loot[i]);
+                list.push(amount)
             } else {
                 console.log("nope");
             }
         }
     }
 
+    // Calculate dice rolls in the form of 1d6, 2d4, etc
     function diceRoll(roll) {
         var total = 0;
         var rollNum;
         var rollDice;
-
-        console.log(roll);
         
-        if (roll["dice"].includes("d")) {
-            rollNum = roll['dice'].split("d")[0];
-            rollDice = roll['dice'].split("d")[1];
+        rollNum = roll['dice'].split("d")[0];
+        rollDice = roll['dice'].split("d")[1];
 
-            for (var i = 0; i < rollNum; i++) {
-                add = Math.floor(Math.random() * parseInt(rollDice)) + 1;
-                total += add;
-            }
-            total *= parseInt(roll["amount"]);
-            console.log(total + roll["type"]);
-            
-        } else {
-            
+        for (var i = 0; i < rollNum; i++) {
+            add = Math.floor(Math.random() * parseInt(rollDice)) + 1;
+            total += add;
         }
-
+        if (roll["table"]) {
+            rollMagic(total);
+        } else {
+            total *= parseInt(roll["amount"]);
+            console.log(total);
+        }
         
-    
+        return total;
+    }
+
+    function rollMagic(rolls) {
+
     }
 </script>
