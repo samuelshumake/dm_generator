@@ -89,16 +89,17 @@
         var list = [];
         for (var i in loot) {
             if (loot[i]['dice']) {
-                amount = diceRoll(loot[i]);
+                amount = diceRoll(loot[i], i);
                 list.push(amount)
             } else {
                 console.log("nope");
             }
         }
+
     }
 
     // Calculate dice rolls in the form of 1d6, 2d4, etc
-    function diceRoll(roll) {
+    function diceRoll(roll, object) {
         var total = 0;
         var rollNum;
         var rollDice;
@@ -110,17 +111,17 @@
             add = Math.floor(Math.random() * parseInt(rollDice)) + 1;
             total += add;
         }
-        if (roll["table"]) {
-            rollMagic(total);
+        if (roll["table"]) {    
+            rollMagic(total, roll["table"]);
         } else {
             total *= parseInt(roll["amount"]);
-            console.log(total);
+            total += roll["type"] + " in " + object;    
         }
-        
         return total;
     }
 
-    function rollMagic(rolls) {
-
+    function rollMagic(roll, table) {
+        console.log(roll);
+        console.log(table);
     }
 </script>
